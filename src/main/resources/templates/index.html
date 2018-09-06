@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container mt-5 bg-light py-5">
+    <div class="container shadow mt-5 bg-light py-5">
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <form method="post" action="" th:object="${person}" class="mb-3">
@@ -22,9 +22,7 @@
                                 <label for="name" class="col-lg-2 col-form-label text-lg-right text-muted">Name</label>
                                 <div class="col-lg-10">
                                     <input type="text" class="form-control" id="name" name="name" th:field="${person.name}" placeholder="Name" th:errorclass="is-invalid">
-                                    <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback" th:errors="*{name}">
-                                        Please choose a username.
-                                    </div>
+                                    <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback" th:errors="*{name}"></div>
                                 </div>
                             </div>
                         </div>
@@ -35,9 +33,7 @@
                                 <label for="lastName" class="col-lg-2 col-form-label text-lg-right text-muted">Last Name</label>
                                 <div class="col-lg-10">
                                     <input type="text" class="form-control" id="lastName" name="lastName" th:field="${person.lastName}" placeholder="Last Name" th:errorclass="is-invalid">
-                                    <div th:if="${#fields.hasErrors('lastName')}" class="invalid-feedback" th:errors="*{lastName}">
-                                        Please choose a username.
-                                    </div>
+                                    <div th:if="${#fields.hasErrors('lastName')}" class="invalid-feedback" th:errors="*{lastName}"></div>
                                 </div>
                             </div>
                         </div>
@@ -71,15 +67,11 @@
                                                 <option value="business">Business</option>
                                                 <option value="mobile">Mobile</option>
                                             </select>
-                                            <div th:if="${#fields.hasErrors('${person.contactList[__${rowStat.index}__].contactType}')}" class="invalid-feedback" th:errors="${person.contactList[__${rowStat.index}__].contactType}">
-                                                Please choose a username.
-                                            </div>
+                                            <div th:if="${#fields.hasErrors('${person.contactList[__${rowStat.index}__].contactType}')}" class="invalid-feedback" th:errors="${person.contactList[__${rowStat.index}__].contactType}"></div>
                                         </td>
                                         <td>
                                             <input class="form-control" th:field="${person.contactList[__${rowStat.index}__].contactName}" th:errorclass="is-invalid"/>
-                                            <div th:if="${#fields.hasErrors('${person.contactList[__${rowStat.index}__].contactName}')}" class="invalid-feedback" th:errors="${person.contactList[__${rowStat.index}__].contactName}">
-                                                Please choose a username.
-                                            </div>
+                                            <div th:if="${#fields.hasErrors('${person.contactList[__${rowStat.index}__].contactName}')}" class="invalid-feedback" th:errors="${person.contactList[__${rowStat.index}__].contactName}"></div>
                                         </td>
                                         <td>
                                             <div class="btn-group">

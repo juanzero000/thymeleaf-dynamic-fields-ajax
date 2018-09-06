@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Contact;
 import com.example.demo.model.Person;
 import com.example.demo.repository.PersonRepository;
+import com.example.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,23 +21,23 @@ import javax.validation.Valid;
 public class PersonController {
 
     @Autowired
-    private PersonRepository personRepository;
+    private PersonService personService;
 
     @GetMapping("/")
     public String index(Model model){
-        model.addAttribute("person", new Person());
+        model.addAttribute("person", personService.createPerson());
         return "index";
     }
 
     @PostMapping("/addContact")
     public String addContact(Person person){
-        person.getContactList().add(new Contact());
+        personService.addContact(person);
         return "index :: contacts"; // returning the updated section
     }
 
     @PostMapping("/removeContact")
     public String removeContact(Person person, @RequestParam("removeContact") Integer contactIndex){
-        person.getContactList().remove(contactIndex);
+        personService.removeContact(person, contactIndex);
         return "index :: contacts"; // returning the updated section
     }
 
@@ -46,7 +47,7 @@ public class PersonController {
         if(bindingResult.hasErrors()){
             model.addAttribute("errorMessage", "The submitted data has errors.");
         }else {
-            model.addAttribute("person", personRepository.save(person));
+            model.addAttribute("person", personService.savePerson(person));
             model.addAttribute("successMessage", "Person saved successfully!");
         }
 
